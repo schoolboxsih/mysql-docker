@@ -1,6 +1,6 @@
 IMGNAME = mysql-schoolbox
 IMGTAG = latest
-NETWORK = schoolbox-network
+NETWORK = bridge
 PORT = 3306
 MYSQL_ROOT_PASSWORD = password
 .PHONY: all build
@@ -15,8 +15,8 @@ run:
 	docker run -t -d\
     --name $(IMGNAME)_run \
 	--net $(NETWORK) \
-	-p $(PORT):$(PORT) \
 	-e MYSQL_ROOT_PASSWORD=$(MYSQL_ROOT_PASSWORD) \
+    -p $(PORT):$(PORT) \
 	$(IMGNAME):$(IMGTAG)
 
 start:
@@ -27,3 +27,9 @@ stop:
 
 delete:
 	@docker container rm $(IMGNAME)_run
+
+deleteall:
+	@docker container rm $(shell docker ps -aq)
+
+stopall:
+	@docker stop $(shell docker ps -aq)
