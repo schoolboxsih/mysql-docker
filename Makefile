@@ -7,6 +7,8 @@ MYSQL_ROOT_PASSWORD = password
 
 all: build
 kill: stop delete
+killall: stopall deleteall
+dpush: taglatest push
 
 build:
 	@docker build -t $(IMGNAME):$(IMGTAG) .
@@ -33,3 +35,9 @@ deleteall:
 
 stopall:
 	@docker stop $(shell docker ps -aq)
+
+taglatest:
+	docker tag $(IMGNAME):$(IMGTAG) schoolboxsih/$(IMGNAME):$(IMGTAG)
+
+push:
+	@docker push schoolboxsih/$(IMGNAME):$(IMGTAG)
