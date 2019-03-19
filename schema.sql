@@ -147,3 +147,37 @@ CREATE TABLE nas (
   PRIMARY KEY (id),
   KEY nasname (nasname)
 );
+
+#
+# Table structure for table 'urls'
+#
+CREATE TABLE urls (
+  id int(10) NOT NULL auto_increment,
+  name varchar(128) NOT NULL,
+  url varchar(128) NOT NULL,
+  uuid varchar(128) UNIQUE,
+  PRIMARY KEY (id)
+);
+
+#
+# Table structure for table 'networks'
+#
+CREATE TABLE networks (
+  id int(10) NOT NULL auto_increment,
+  name varchar(128) NOT NULL,
+  network varchar(128) NOT NULL,
+  uuid varchar(128) UNIQUE,
+  PRIMARY KEY (id)
+);
+
+#
+# Table structure for table 'vlans'
+#
+CREATE TABLE vlans (
+  id int(10) NOT NULL auto_increment,
+  name varchar(128) NOT NULL,
+  starttag int(3),
+  endtag int(3),
+  uuid varchar(128) UNIQUE,
+  PRIMARY KEY (id)
+);
